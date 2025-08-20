@@ -900,9 +900,17 @@
             // Format input as user types
             phoneInput.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
+                
+                // 0 ile başlıyorsa kaldır (05XX yerine 5XX olsun)
+                if (value.startsWith('0')) {
+                    value = value.substring(1);
+                }
+                
+                // Maksimum 10 karakter
                 if (value.length > 10) {
                     value = value.substring(0, 10);
                 }
+                
                 e.target.value = value;
             });
             
